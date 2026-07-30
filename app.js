@@ -26,3 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+const loginBtn = document.getElementById("loginBtn");
+
+loginBtn.addEventListener("click", () => {
+  alert("Google Login বাটন কাজ করছে!");
+});
