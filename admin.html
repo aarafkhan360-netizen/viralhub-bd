@@ -1,0 +1,40 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+  // শুধুমাত্র আপনার Gmail
+  const ADMIN_EMAIL = "sheikh.md.rahat360@gmail.com";
+
+  firebase.auth().onAuthStateChanged((user) => {
+
+    if (!user) {
+      alert("আগে Google Login করুন");
+      window.location.href = "index.html";
+      return;
+    }
+
+    if (user.email !== ADMIN_EMAIL) {
+      alert("আপনি Admin নন!");
+      window.location.href = "index.html";
+      return;
+    }
+
+    document.getElementById("adminName").innerText =
+      "Welcome, " + user.displayName;
+  });
+
+  document.getElementById("uploadBtn").addEventListener("click", () => {
+
+    const title = document.getElementById("title").value;
+    const video = document.getElementById("video").files[0];
+
+    if (!title || !video) {
+      alert("Title ও Video নির্বাচন করুন");
+      return;
+    }
+
+    alert(
+      "Free GitHub Pages-এ Browser থেকে ভিডিও Upload করা যায় না।\n\nvideos/ ফোল্ডারে ভিডিও Upload করে filename Firestore-এ বা কোডে যোগ করতে হবে।"
+    );
+
+  });
+
+});
